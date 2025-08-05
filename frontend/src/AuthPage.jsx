@@ -20,6 +20,11 @@ function AuthPage({succesfulLogin})
 
     async function handleRequest(requestType)
     {
+        if (!username.trim()){
+            setErrorMessage("Username is required")
+            return
+        }
+
         const url=`http://localhost:5000/${requestType}`
 
         try {
@@ -29,7 +34,7 @@ function AuthPage({succesfulLogin})
                 body:JSON.stringify({name:username})
             });
 
-            const responseData=response.json()
+            const responseData=await response.json()
 
             if(response.ok){
                 setErrorMessage('')

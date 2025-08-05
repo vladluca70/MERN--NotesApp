@@ -57,7 +57,7 @@ server.post('/signup', async(req,res)=>{
         const usernameExists=await noteModel.findOne({name:username}) 
         if (usernameExists){
             console.log(`${username} already exists in database`)
-            res.status(409).json({message:"username already exists"})
+            return res.status(409).json({message:"username already exists"})
         }
 
         const newUsername= new noteModel({name:username})
