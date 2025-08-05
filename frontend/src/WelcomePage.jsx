@@ -1,10 +1,11 @@
 
 
-function WelcomePage({username})
+function WelcomePage({username, logout})
 {
     return(
         <>
-        <p>Welcome {username}</p>
+        <p>Welcome {username}</p> <br/>
+        <button onClick={logout}>Log out</button>
         </>
     )
 }

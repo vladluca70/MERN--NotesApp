@@ -10,10 +10,14 @@ function App() {
       setUsername(name)
     }
 
+    function handleLogout(){
+      setUsername('')
+    }
+
     if(username){
       return(
         <>
-          <WelcomePage username={username}/>
+          <WelcomePage username={username} logout={handleLogout}/>
         </>
       )
     }
