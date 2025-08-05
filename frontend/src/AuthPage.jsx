@@ -14,6 +14,10 @@ function AuthPage({succesfulLogin})
         await handleRequest('login')
     }
 
+    async function handleSignupButton() {
+        await handleRequest('signup')
+    }
+
     async function handleRequest(requestType)
     {
         const url=`http://localhost:5000/${requestType}`
@@ -45,6 +49,7 @@ function AuthPage({succesfulLogin})
         <>
             <input onChange={(e)=>handleChangeName(e)}/>
             <button onClick={handleLoginButton}>Log in</button>
+            <button onClick={handleSignupButton}>Sign up</button>
             {errorMessage && <p>{errorMessage}</p>}
         </>
     )

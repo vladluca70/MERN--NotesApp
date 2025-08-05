@@ -44,7 +44,32 @@ server.post('/login', async(req, res)=>{
         console.error("login server error", error)
         res.status(500).json({message:"internal server error"})
     }
-})
+});
+
+server.post('/signup', async(req,res)=>{
+    const username=req.body.name
+    
+    if(!username){
+        res.status(400).json({message:"username is required"})
+    }
+    
+    try {
+        const usernameExists=await noteModel.findOne({name:username}) 
+        if (usernameExists){
+            console.log(`${username} already exists in database`)
+            res.status(409).json({message:"username already exists"})
+        }
+
+        const newUsername= new noteModel({name:username})
+        await newUsername.save()
+        console.log(`Username ${username} have just been stored in database`)
+        res.status(200).json({message:"username registered"})
+
+    } catch (error) {
+        console.error("login server error", error)
+        res.status(500).json({message:"internal server error"})
+    }
+});
 
 server.listen(
     port, ()=>{
