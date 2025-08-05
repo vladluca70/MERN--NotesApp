@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-function AuthPage()
+function AuthPage({succesfulLogin})
 {
     const [username, setUsername]=useState('')
     const [errorMessage, setErrorMessage]=useState('')
@@ -25,7 +25,15 @@ function AuthPage()
                 body:JSON.stringify({name:username})
             });
 
-            
+            const responseData=response.json()
+
+            if(response.ok){
+                setErrorMessage('')
+                succesfulLogin(username)
+            }
+            else{
+                setErrorMessage(responseData.message)
+            }
         } 
         catch (error) {
 
@@ -37,6 +45,7 @@ function AuthPage()
         <>
             <input onChange={(e)=>handleChangeName(e)}/>
             <button onClick={handleLoginButton}>Log in</button>
+            {errorMessage && <p>{errorMessage}</p>}
         </>
     )
 }

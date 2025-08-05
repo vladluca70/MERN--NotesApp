@@ -6,13 +6,23 @@ import AuthPage from './AuthPage';
 function App() {
     const [username, setUsername]=useState('')
 
-    if(username)
-    {
-      <WelcomePage username={username}/>
+    function handleUsernameOnSuccesfulLogin(name){
+      setUsername(name)
     }
-    else
-    {
-      <AuthPage/>
+
+    if(username){
+      return(
+        <>
+          <WelcomePage username={username}/>
+        </>
+      )
+    }
+    else{
+      return(
+        <>
+          <AuthPage succesfulLogin={handleUsernameOnSuccesfulLogin} />
+        </>
+      )
     }
 }
 

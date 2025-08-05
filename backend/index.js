@@ -38,7 +38,7 @@ server.post('/login', async(req, res)=>{
         }
         else{
             console.log(`${username} does not exist in database`)
-            res.status(404).json({message:"username not found in database \n try again"})
+            res.status(404).json({message:"username not found in database"})
         }
     } catch (error) {
         console.error("login server error", error)
