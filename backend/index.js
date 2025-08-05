@@ -25,7 +25,25 @@ const noteSchema=new mongoose.Schema({
 const noteModel=mongoose.model('Note', noteSchema)
 
 server.post('/login', async(req, res)=>{
+    const username=req.body.name
+    if(!username){
+        res.status(400).json({message:"username is required"})
+    }
 
+    try {
+        const userExists= await noteModel.findOne({name:username})
+        if(userExists){
+            console.log(`${username} exists in database, log in succesful`)
+            res.status(200).json({message:"Log in succesful"})
+        }
+        else{
+            console.log(`${username} does not exist in database`)
+            res.status(404).json({message:"username not found in database \n try again"})
+        }
+    } catch (error) {
+        console.error("login server error", error)
+        res.status(500).json({message:"internal server error"})
+    }
 })
 
 server.listen(
