@@ -19,7 +19,13 @@ function AuthPage()
         const url=`http://localhost:5000/${requestType}`
 
         try {
+            const response = await fetch(url, {
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify(username)
+            });
 
+            
         } 
         catch (error) {
 

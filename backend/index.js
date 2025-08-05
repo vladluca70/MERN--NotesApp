@@ -8,6 +8,10 @@ const server=express()
 server.use(express.json())
 server.use(cors())
 
+server.post('/login', async(req, res)=>{
+    
+})
+
 server.listen(
     port, ()=>{
         console.log(`server is working on port ${port}`)
