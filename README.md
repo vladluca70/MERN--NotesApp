@@ -24,20 +24,11 @@ This is a full-stack MERN (MongoDB, Express, React, Node.js) application divided
 - Communicates with the backend via fetch API calls (no axios used).
 - Displays notes and user authentication features.
 
-## Installation and Setup
+## Testing
 
-### Backend
-
-1. Navigate to the backend directory.
-2. Run `npm install` to install dependencies.
-3. Create a `.env` file to configure your MongoDB connection string and any other environment variables.
-4. Run `npm start` to start the backend server.
-
-### Frontend
-
-1. Navigate to the frontend directory.
-2. Run `npm install` to install dependencies.
-3. Run `npm start` to start the React development server.
+- The backend API endpoints were tested using **Postman**.
+- Postman was used to send HTTP requests and verify JSON responses along with the status codes.
+- This ensured proper communication between frontend and backend.
 
 ## Usage
 
