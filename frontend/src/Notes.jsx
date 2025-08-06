@@ -50,7 +50,7 @@ function Notes({usernameForNotes})
              const response= await fetch(url, {
                 method:'POST',
                 headers:{'Content-Type':'application/json'},
-                body:JSON.stringify({username:usernameForNotes ,newNote:newNote})
+                body:JSON.stringify({username:usernameForNotes})
             });
 
             const data=await response.json()
@@ -66,6 +66,7 @@ function Notes({usernameForNotes})
                 console.error("errors", error)
             }
         }
+        fetchNotes()
     }, [usernameForNotes]);
 
     return(

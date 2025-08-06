@@ -102,7 +102,20 @@ server.post('/add-new-note', async(req, res)=>{
 });
 
 server.post('/fetch-notes', async(req,res)=>{
-    
+    const username=req.body.username
+    if(!username){
+        return res.status(400).json({ message: 'username is required' });
+    }
+
+    try {
+        const userNotes=await noteModel.find({name:username})
+        const onlyNotes=userNotes.map(note=>note.note)
+        res.status(200).json({ notes: onlyNotes });
+
+    } catch (error) {
+        console.error("Error fetching notes", error);
+        res.status(500).json({ message: 'internal server error' });
+    }
 })
 
 server.listen(
