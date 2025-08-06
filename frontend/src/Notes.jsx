@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 function Notes({usernameForNotes})
@@ -40,6 +40,33 @@ function Notes({usernameForNotes})
             console.error("errors", error)
         }
     }
+
+    useEffect(()=>{
+        async function fetchNotes() {
+            if(!usernameForNotes) return;
+
+            try {
+            const url='http://localhost:5000/fetch-notes'
+             const response= await fetch(url, {
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({username:usernameForNotes ,newNote:newNote})
+            });
+
+            const data=await response.json()
+
+            if (response.ok) {
+                    setNotes(data.notes);
+                    setErrorMessage('');
+                } else {
+                    setErrorMessage(data.message);
+                }
+
+            } catch (error) {
+                console.error("errors", error)
+            }
+        }
+    }, [usernameForNotes]);
 
     return(
         <>

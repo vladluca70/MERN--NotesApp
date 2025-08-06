@@ -101,6 +101,10 @@ server.post('/add-new-note', async(req, res)=>{
     }
 });
 
+server.post('/fetch-notes', async(req,res)=>{
+    
+})
+
 server.listen(
     port, ()=>{
         console.log(`server is working on port ${port}`)
