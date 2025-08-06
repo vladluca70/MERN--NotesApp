@@ -71,6 +71,36 @@ server.post('/signup', async(req,res)=>{
     }
 });
 
+server.post('/add-new-note', async(req, res)=>{
+    const username=req.body.username
+    const newNote=req.body.newNote
+
+    if(!username){
+        return res.status(400).json({message:'name is required'})
+    }
+    if(!newNote){
+        return res.status(400).json({message:'note content is required'})
+    }
+
+    try {
+        const userExists=await noteModel.findOne({name:username})
+        if(userExists){
+            const newNoteToInsert= new noteModel({name:username, note:newNote})
+            await newNoteToInsert.save()
+            console.log(`note has just been stored in database`)
+            res.status(200).json({message:"note registered"})
+        }
+        else{
+            console.log(`${username} does not exist in database`)
+            res.status(404).json({message:"username not found in database"})
+        }
+
+    } catch (error) {
+        console.error("login server error", error)
+        res.status(500).json({message:"internal server error"})
+    }
+});
+
 server.listen(
     port, ()=>{
         console.log(`server is working on port ${port}`)
