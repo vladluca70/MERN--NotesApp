@@ -52,5 +52,3 @@ This is a full-stack MERN (MongoDB, Express, React, Node.js) application divided
 - Frontend uses React hooks (`useState`, `useEffect`) for efficient state management.
 
 ---
-
-Feel free to customize this README according to your project specifics!
